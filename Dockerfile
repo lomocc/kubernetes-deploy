@@ -28,11 +28,10 @@ RUN curl -L -o /usr/bin/kubectl https://storage.googleapis.com/kubernetes-releas
 # Install deploy scripts
 ENV PATH=/opt/kubernetes-deploy:$PATH
 COPY / /opt/kubernetes-deploy/
-# RUN ln -s /opt/kubernetes-deploy/run /usr/bin/deploy && \
-#   which deploy && \
-#   which canary && \
-#   which build && \
-#   which destroy
+RUN chmod +x /opt/kubernetes-deploy/build \
+   /opt/kubernetes-deploy/deploy \
+   /opt/kubernetes-deploy/canary \
+   /opt/kubernetes-deploy/destroy
 
 ENTRYPOINT []
 CMD []
