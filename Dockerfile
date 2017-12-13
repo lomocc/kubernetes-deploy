@@ -1,8 +1,5 @@
 FROM docker:dind
 
-# registry-mirrors
-curl -sSL https://get.daocloud.io/daotools/set_mirror.sh | sh -s http://b716a0e6.m.daocloud.io
-
 # Install requirements
 RUN apk add -U openssl curl tar gzip bash ca-certificates && \
   wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://raw.githubusercontent.com/sgerrand/alpine-pkg-glibc/master/sgerrand.rsa.pub && \
@@ -35,6 +32,9 @@ RUN chmod +x /opt/kubernetes-deploy/build \
    /opt/kubernetes-deploy/deploy \
    /opt/kubernetes-deploy/canary \
    /opt/kubernetes-deploy/destroy
+
+# registry-mirrors
+curl -sSL https://get.daocloud.io/daotools/set_mirror.sh | sh -s http://b716a0e6.m.daocloud.io
 
 ENTRYPOINT []
 CMD []
