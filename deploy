@@ -131,6 +131,7 @@ metadata:
     pipeline_id: "$CI_PIPELINE_ID"
     build_id: "$CI_BUILD_ID"
   annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
     kubernetes.io/tls-acme: "true"
     # kubernetes.io/ingress.class: "nginx"
 spec:
