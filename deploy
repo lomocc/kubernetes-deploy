@@ -65,7 +65,6 @@ metadata:
     track: "$track"
     pipeline_id: "$CI_PIPELINE_ID"
     build_id: "$CI_BUILD_ID"
-    tier: web
 spec:
   replicas: $replicas
   template:
@@ -74,7 +73,6 @@ spec:
         name: $name
         app: $CI_ENVIRONMENT_SLUG
         track: "$track"
-        tier: web
     spec:
       containers:
       - name: app
@@ -85,23 +83,9 @@ spec:
           value: "$CI_PIPELINE_ID"
         - name: CI_BUILD_ID
           value: "$CI_BUILD_ID"
-        - name: DATABASE_URL
-          value: "$DATABASE_URL"
         ports:
         - name: web
           containerPort: 80
-        livenessProbe:
-          httpGet:
-            path: /
-            port: 80
-          initialDelaySeconds: 15
-          timeoutSeconds: 15
-        readinessProbe:
-          httpGet:
-            path: /
-            port: 80
-          initialDelaySeconds: 5
-          timeoutSeconds: 3
 ---
 apiVersion: v1
 kind: Service
@@ -119,7 +103,6 @@ spec:
       targetPort: web
   selector:
     app: $CI_ENVIRONMENT_SLUG
-    tier: web
 ---
 apiVersion: extensions/v1beta1
 kind: Ingress
