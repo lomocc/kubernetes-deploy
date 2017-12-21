@@ -1,7 +1,6 @@
-# auto-devops
+# kubernetes-deploy
 
-自动构建, 项目预览（review apps）, 自动部署
+[Deprecated]自动构建, 项目预览（review apps）, 自动部署
 
-### License
+[auto-devops](https://github.com/lomocc/auto-devops)
 
-MIT, bdfint.com, 2017
